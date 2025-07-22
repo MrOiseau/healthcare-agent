@@ -11,7 +11,6 @@ st.caption("Powered by LangChain & OpenAI. Ask analytical or semantic questions 
 # Use session state to initialize the agent only once per session.
 if "agent_executor" not in st.session_state:
     with st.spinner("Initializing Agent... This may take a moment."):
-        # No need to load_dotenv() here if it's done in config.py
         st.session_state.agent_executor = create_main_agent()
 
 # --- Chat History Management ---

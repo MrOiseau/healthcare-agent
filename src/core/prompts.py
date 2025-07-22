@@ -1,4 +1,3 @@
-# src/core/prompts.py
 from datetime import datetime
 
 # Get today's date for the prompt
@@ -41,7 +40,6 @@ Action Input: print(len(df))
 """
 
 # --- TOOL DESCRIPTIONS ---
-# These descriptions are critical for the main agent's routing decisions
 PANDAS_TOOL_DESCRIPTION = (
     "Use for precise analytical queries on the healthcare dataset. "
     "Ideal for calculations (average, sum, count), filtering (e.g., 'find all patients with cancer'), "
