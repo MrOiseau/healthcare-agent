@@ -10,6 +10,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # --- LLM & Embedding Models ---
 AGENT_LLM_MODEL = "gpt-4o"
 EMBEDDING_MODEL = "text-embedding-3-small"
+RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"  # Cross-encoder for reranking
 
 # --- Data & Storage Paths ---
 DATA_DIR = "data"
@@ -35,7 +36,10 @@ SUMMARY_REPORT_XLSX_PATH = os.path.join(EVAL_DIR, SUMMARY_REPORT_XLSX_FILENAME)
 
 # --- Retrieval & Embedding Parameters ---
 EMBEDDING_BATCH_SIZE = 200
-TOP_K_RETRIEVED_DOCS = 5
+# Retrieve more documents initially for the reranker to process
+INITIAL_K_RETRIEVED_DOCS = 20
+# The final number of documents to send to the LLM after reranking
+TOP_K_RERANKED_DOCS = 5
 
 # --- Evaluation Parameters ---
 EVAL_SAMPLE_SIZE = 5000
