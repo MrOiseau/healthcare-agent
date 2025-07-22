@@ -1,0 +1,35 @@
+# --- Core LangChain Framework ---
+# For building agents, chains, and prompts
+langchain==0.3.26
+# Core data structures (Documents, Messages, etc.)
+langchain-core==0.3.70
+# Community integrations, including the FAISS vector store wrapper
+langchain-community==0.3.27
+# OpenAI models (GPT-4o, embeddings) integration
+langchain-openai==0.3.28
+# Experimental features, including the pandas dataframe agent
+langchain-experimental==0.3.4
+
+# --- Vector Database ---
+# In-memory vector store for similarity search. Use faiss-gpu for CUDA support.
+faiss-cpu==1.11.0.post1
+
+# --- Data Handling & Analysis ---
+# For data loading, preprocessing, and manipulation
+pandas==2.3.1
+# Required by pandas to write evaluation reports to .xlsx files
+openpyxl==3.1.5
+
+# --- Web Application UI ---
+# For creating the interactive web interface
+streamlit==1.47.0
+
+# --- Utilities ---
+# For loading environment variables from a .env file
+python-dotenv==1.1.1
+# For displaying progress bars during long operations (e.g., embedding)
+tqdm==4.67.1
+
+tiktoken==0.9.0
+openai==1.97.0
+tabulate==0.9.0
