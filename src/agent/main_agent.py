@@ -12,9 +12,26 @@ from src.core.prompts import MAIN_AGENT_PROMPT
 
 
 def create_main_agent(sample_size: Optional[int] = None) -> AgentExecutor:
-    """
-    Initializes and returns the main agent executor.
-    ...
+    """Constructs and configures the main healthcare agent executor.
+
+    This function serves as the central factory for the agent. It orchestrates
+    the key components: the LLM, the data, and the specialized tools. The agent
+    is designed as a router to intelligently delegate user queries to the most
+    appropriate tool:
+        - PandasDataFrameAnalyzer: For structured, analytical queries (e.g., counts, averages).
+        - PatientRecordSemanticSearch: For semantic, similarity-based queries (e.g., 'find similar cases').
+
+    Args:
+        sample_size: If provided, the agent will operate on a random subset
+            of the data. This is primarily for faster testing and evaluation.
+            If None, the full dataset is used.
+
+    Returns:
+        A runnable LangChain AgentExecutor instance, ready to process
+        queries via its `.invoke()` method.
+
+    Raises:
+        ValueError: If the OPENAI_API_KEY environment variable is not set.
     """
     if not config.OPENAI_API_KEY:
         raise ValueError("OPENAI_API_KEY must be set in the environment.")
