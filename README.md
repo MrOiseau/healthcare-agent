@@ -15,7 +15,7 @@ The core of this system is a hybrid agent that acts as an intelligent router. It
 This dual-tool approach ensures that each type of query is handled by the most appropriate and accurate method.
 
 
-## ✨ Features
+## Features
 
 - **Hybrid Query Handling**: Seamlessly answers both analytical and semantic questions.
 - **Robust Tool Selection**: An LLM-powered router agent intelligently chooses the correct tool for the job.
@@ -23,7 +23,7 @@ This dual-tool approach ensures that each type of query is handled by the most a
 - **Comprehensive Evaluation Suite**: Includes scripts to generate a test set, run evaluations, and score the agent's performance on tool selection and answer faithfulness.
 - **Interactive UI**: A simple and intuitive web interface built with Streamlit.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 
