@@ -28,8 +28,8 @@ def main():
         texts=texts,
         embedding=embeddings,
         metadatas=metadatas,
-        # Using tqdm for progress bar on large datasets
-        ids=None # Let FAISS handle IDs
+        # Using tqdm for progress bar
+        ids=None # FAISS will handle IDs
     )
 
     print("\nVector store created successfully.")

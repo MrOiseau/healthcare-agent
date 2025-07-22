@@ -1,7 +1,7 @@
 import os
 
 # --- Environment & API Keys ---
-# Load from .env file, which should be in the root directory
+# Load from .env file
 from dotenv import load_dotenv
 load_dotenv()
 
