@@ -1,3 +1,10 @@
+"""
+Houses the main agent prompt and specialized tool prompts for guiding LLM behavior.
+Defines detailed instructions for tool selection, data safety, and output formatting.
+
+Imported by the agent builder and tool modules.
+"""
+
 from datetime import datetime
 
 TODAY = datetime.now().strftime("%Y-%m-%d")

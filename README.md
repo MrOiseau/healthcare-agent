@@ -15,39 +15,39 @@ This project implements an advanced Question-Answering system for a healthcare d
 
 The core of this system is a hybrid agent that acts as an intelligent router. It analyzes the user's query and directs it to one of two specialized tools:
 
+
 1.  **`PandasDataFrameAnalyzer`**:  
     A tool powered by a Text-to-Pandas agent. It handles analytical queries requiring precise calculations, aggregations, and filtering (e.g., "How many patients have cancer?").
 
 2.  **`PatientRecordSemanticSearch`**:  
-    A RAG tool that performs **two-stage retrieval** for semantic queries:
-    - **Stage 1:** Vector similarity search retrieves relevant records from a FAISS index.
-    - **Stage 2:** A **cross-encoder reranker** (`cross-encoder/ms-marco-MiniLM-L-6-v2`) further refines the results for answer faithfulness and context relevance.
+    A RAG tool that uses a `RetrievalPipeline` for semantic queries. This pipeline performs **two-stage retrieval**:
+    - **Stage 1:** Fast vector similarity search retrieves an initial set of relevant records from a FAISS index.
+    - **Stage 2:** A **cross-encoder reranker** (`cross-encoder/ms-marco-MiniLM-L-6-v2`) re-sorts these results for maximal relevance to the query, significantly improving answer faithfulness and reducing noise.
 
 This dual-tool approach ensures that each type of query is handled by the most appropriate and accurate method.  
 **The semantic search pipeline (vector retrieval + reranker) maximizes answer precision and minimizes hallucinations.**
 
 ## Features
 
-- **Hybrid Query Handling:** Seamlessly answers both analytical and semantic questions.
+- **Hybrid Query Handling:** Seamlessly answers both analytical ("how many") and semantic ("find similar") questions.
 - **Two-Stage Semantic Search:** Uses a vector store and cross-encoder reranker for high-fidelity semantic matching.
 - **Robust Tool Selection:** An LLM-powered router agent intelligently chooses the correct tool for the job.
 - **Built-in Guardrails:** Politely declines to answer out-of-scope questions or provide medical advice.
-- **Comprehensive Evaluation Suite:** Includes scripts to generate a test set, run evaluations, and score the agent's performance on tool selection and answer faithfulness.
-- **Interactive UI:** A simple and intuitive web interface built with Streamlit.
+- **Comprehensive Evaluation Suite:** Includes scripts to generate a test set, run evaluations, and score the agent's performance on tool selection and answer faithfulness using an LLM-as-a-Judge.
+- **Interactive UI:** A simple and intuitive web interface built with Streamlit, featuring automated insights and visualizations.
 
 ## Getting Started
 
 ### 1. Prerequisites
 
-- Python 3.13 (or compatible with your packages—see `requirements.txt`)
+- Python 3.13
 - An OpenAI API Key
-- Node.js (optional, for some LangChain dependencies)
 
 ### 2. Setup and Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/healthcare-agent.git
+    git clone git@github.com:MrOiseau/healthcare-agent.git
     cd healthcare-agent
     ```
 
@@ -55,9 +55,8 @@ This dual-tool approach ensures that each type of query is handled by the most a
     ```bash
     python -m venv .venv
     source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
-    pip install -r requirements.txt
+    pip install -r requirements_py_3_13.txt
     ```
-    > If you are using Python 3.13 and have compatibility issues, ensure your dependencies in `requirements.txt` are up-to-date.
 
 3.  **Set up environment variables:**
     - Copy the example `.env` file:

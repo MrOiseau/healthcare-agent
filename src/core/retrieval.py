@@ -1,3 +1,11 @@
+"""
+Implements semantic retrieval components: FAISS vector store integration, embedding,
+and cross-encoder reranking. Provides creation functions for the two-stage retrieval
+pipeline powering the RAG agent tool.
+
+Used in agent construction and evaluation scripts.
+"""
+
 import os
 from typing import List, Tuple
 from langchain_openai import OpenAIEmbeddings

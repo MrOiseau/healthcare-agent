@@ -1,3 +1,11 @@
+"""
+Functions for loading and preprocessing the healthcare dataset.
+Includes logic for standardizing columns, handling nulls, and creating
+semantic summary text for RAG/vector search.
+
+Used by the agent, evaluation scripts, and app.
+"""
+
 import pandas as pd
 import os
 from typing import Optional

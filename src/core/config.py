@@ -1,3 +1,12 @@
+"""
+Centralized configuration for the Healthcare Q&A Agent system.
+Defines all major model parameters, file paths, and environment variables.
+Enables consistent, maintainable settings for agent behavior, evaluation,
+data access, and vector search.
+
+Imported by core modules and all major scripts.
+"""
+
 import os
 
 # --- Environment & API Keys ---

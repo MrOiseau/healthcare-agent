@@ -1,3 +1,16 @@
+"""
+Scores the Healthcare Agent's performance on the evaluation set:
+    - Tool selection accuracy.
+    - Analytical (pandas) answer correctness.
+    - Semantic (vector search) answer faithfulness using an LLM-as-a-Judge.
+
+Generates detailed scored results and summary reports for further analysis.
+Intended for automated benchmarking and iterative agent improvement.
+
+Usage:
+    PYTHONPATH=$PYTHONPATH:. python src/scripts/03_score_evaluation_results.py
+"""
+
 import pandas as pd
 import os
 import re
@@ -153,6 +166,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Test it:
-# PYTHONPATH=$PYTHONPATH:. python src/scripts/03_score_evaluation_results.py

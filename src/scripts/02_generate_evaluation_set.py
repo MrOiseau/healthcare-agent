@@ -1,3 +1,17 @@
+"""
+Automatically generates a diverse set of evaluation questions for the Healthcare Agent,
+including analytical (pandas), semantic (vector search), and guardrail queries.
+Each question is saved along with metadata describing the ideal tool and, for analytical
+questions, the ground-truth answer.
+
+Intended workflow:
+    - Run after building the vector store and before running the evaluation.
+    - Produces a CSV used by run_evaluation.py and scoring scripts.
+
+Usage:
+    PYTHONPATH=$PYTHONPATH:. python src/scripts/02_generate_evaluation_set.py
+"""
+
 import pandas as pd
 import random
 import os
@@ -107,6 +121,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Test it:
-# PYTHONPATH=$PYTHONPATH:. python src/scripts/02_generate_evaluation_set.py

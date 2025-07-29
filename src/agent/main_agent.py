@@ -1,3 +1,12 @@
+"""
+Defines and constructs the main Healthcare Q&A AgentExecutor for the application.
+Orchestrates the agent routing logic, model selection, and specialized tools for both
+analytical (pandas) and semantic (RAG/vector search) queries.
+
+Provides the entry point for integrating the LLM, retrieval pipelines, and agent prompt logic.
+Used by the app and evaluation scripts.
+"""
+
 from typing import Optional
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
