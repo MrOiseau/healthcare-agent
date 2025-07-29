@@ -50,7 +50,12 @@ def make_response_serializable(response: dict) -> dict:
         serializable_action = {
             "tool": getattr(action, "tool", None) if hasattr(action, "tool") else action.get("tool"),
             "tool_input": json.dumps(getattr(action, "tool_input", None) if hasattr(action, "tool_input") else action.get("tool_input"))
-                        if isinstance(getattr(action, "tool_input", None) if hasattr(action, "tool_input") else action.get("tool_input"), dict)
+                        if isinstance(
+                            getattr(action, "tool_input", None)
+                            if hasattr(action, "tool_input")
+                            else action.get("tool_input"),
+                            (dict, list, tuple, set),
+                        )
                         else str(getattr(action, "tool_input", None) if hasattr(action, "tool_input") else action.get("tool_input")),
             "log": getattr(action, "log", "") if hasattr(action, "log") else action.get("log", "")
         }

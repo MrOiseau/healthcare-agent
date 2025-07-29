@@ -109,7 +109,7 @@ def _generate_pandas_insight(executed_code: str, full_df: pd.DataFrame) -> Optio
         return fig
 
     # Insight: Distribution/counts by a categorical variable, highlight user's choice
-    if ('len(df' in executed_code or '.count()' in executed_code) and filter_col:
+    if (re.search(r"\.count\(\)", executed_code) or ".shape[0]" in executed_code) and filter_col:
         st.subheader(f"Insight: Distribution of '{filter_col.replace('_', ' ').title()}'")
         st.caption(
             f"Your query focused on '{filter_val}'. This chart shows the distribution across the top 20 categories, with yours highlighted."

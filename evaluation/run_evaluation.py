@@ -48,10 +48,12 @@ def run_evaluation():
             # Safely extract intermediate steps for analysis
             tool_used, tool_input, retrieved_context = "N/A", "N/A", "N/A"
 
-            if "intermediate_steps" in response and response["intermediate_steps"]:
-                first_step = response["intermediate_steps"][0]
-                tool_used = first_step[0].tool
-                tool_output_str = first_step[1]
+            steps = response.get("intermediate_steps", [])
+            if steps:
+                # For multi‑tool chains the last step is the one that matters
+                last_step = steps[-1]
+                tool_used = getattr(last_step[0], "tool", "N/A")
+                tool_output_str = last_step[1]
 
                 try:
                     # NEW: Parse the JSON output from the tool
