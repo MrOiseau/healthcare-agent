@@ -12,7 +12,7 @@ OUT_OF_SCOPE_PATTERNS = [
     r"\bweather\b",
     r"\bcapital of\b",
     r"\bprogram\b",
-    r"\bhow to\b",
+    r"\bhow to (install|setup|configure|run|compile)\b",
     r"\bfile\b",
     r"\bpackage\b",
     r"\bimport\b",

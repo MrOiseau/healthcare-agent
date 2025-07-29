@@ -252,7 +252,10 @@ else:
     selected_idx = st.session_state.selected_response_index
     selected_item = st.session_state.chat_history[selected_idx]
 
-    if selected_item["role"] == "ai" and selected_item["response"] is not None:
+    if selected_item["response"] is None:
+        st.info("No details for this answer.")
+
+    if selected_item["role"] == "ai" and selected_item.get("response"):
         response = selected_item["response"]
         answer_tab, trajectory_tab, insights_tab, config_tab = st.tabs(
             ["📝 Answer", "🔬 Reasoning", "📈 Insights", "⚙️ Config"]

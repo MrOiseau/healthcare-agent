@@ -29,7 +29,6 @@ def create_pandas_tool(df: pd.DataFrame, llm: ChatOpenAI) -> Tool:
         llm=llm,
         df=df,
         verbose=True,
-        handle_parsing_errors=True,
         # TODO - SECURITY WARNING: allow_dangerous_code=True is a security risk.
         # In a production environment, this should be replaced with a sandboxed
         # execution environment (e.g., using Docker or a service like e2b)

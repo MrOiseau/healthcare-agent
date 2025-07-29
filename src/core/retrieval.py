@@ -47,6 +47,7 @@ def create_retrieval_components() -> Tuple[BaseRetriever, CrossEncoderReranker]:
         allow_dangerous_deserialization=True
     )
     base_retriever = vectorstore.as_retriever(
+        search_type="similarity",
         search_kwargs={"k": config.INITIAL_K_RETRIEVED_DOCS}
     )
 

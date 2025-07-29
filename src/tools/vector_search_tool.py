@@ -62,8 +62,8 @@ def create_vector_search_tool(retriever: BaseRetriever, reranker: BaseDocumentCo
             # --- Step 4: Structure the full output for UI display ---
             structured_output = {
                 "tool_input": query,
-                "retrieved_docs": [doc.dict() for doc in initial_docs],
-                "reranked_docs": [doc.dict() for doc in reranked_docs],
+                "retrieved_docs": [doc.model_dump() for doc in initial_docs],
+                "reranked_docs": [doc.model_dump() for doc in reranked_docs],
                 "final_output": final_output_str
             }
             print("--- [End Vector Search Tool] ---\\n")
