@@ -1,3 +1,16 @@
+"""
+Builds a FAISS vector index from the preprocessed healthcare dataset using OpenAI embeddings.
+This index enables fast and accurate semantic retrieval for patient records, supporting
+the RAG (Retrieval-Augmented Generation) component of the agent.
+
+Typical workflow:
+    - Run this script after updating or replacing the dataset.
+    - Produces the vector store in the specified directory for semantic search.
+
+Usage:
+    PYTHONPATH=$PYTHONPATH:. python src/scripts/01_build_vector_store.py
+"""
+
 import os
 from tqdm import tqdm
 from langchain_openai import OpenAIEmbeddings
@@ -57,6 +70,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Run it
-# PYTHONPATH=$PYTHONPATH:. python src/scripts/01_build_vector_store.py
