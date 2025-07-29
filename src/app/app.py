@@ -29,6 +29,7 @@ from src.app.app_helpers import (
     get_session_file,
 )
 from src.app.insights import render_insights_tab
+from src.core.guardrails import guardrail_response, output_guardrail
 
 
 # --- Handle new chat creation (must be at the top for rerun logic) ---
@@ -179,7 +180,25 @@ for item in st.session_state.chat_history:
 
 # --- Handle user input and invoke agent ---
 if user_query := st.chat_input("Ask a question about the healthcare data..."):
-    st.session_state.chat_history.append({"role": "human", "content": user_query, "response": None})
+    st.session_state.chat_history.append({
+        "role": "human", 
+        "content": user_query, 
+        "response": None
+    })
+    
+    # Guardrail layer first
+    refusal = guardrail_response(user_query)
+    if refusal:
+        st.session_state.chat_history.append({
+            "role": "ai",
+            "content": refusal,
+            "response": None
+        })
+        st.session_state.selected_response_index = len(st.session_state.chat_history) - 1
+        save_chat_history(session_id, st.session_state.chat_history)
+        st.rerun()
+        
+    # Only process if in-scope
     with st.spinner("Thinking..."):
         try:
             langchain_messages = []
@@ -195,7 +214,10 @@ if user_query := st.chat_input("Ask a question about the healthcare data..."):
             serializable_response = make_response_serializable(raw_response)
             safe_response = make_json_safe(serializable_response)
 
+            # Final output scan - guardrail output filter
             ai_response_content = serializable_response.get("output", "Sorry, I couldn't get a response.")
+            ai_response_content = output_guardrail(ai_response_content)
+
             st.session_state.chat_history.append(
                 {"role": "ai", "content": ai_response_content, "response": safe_response}
             )
